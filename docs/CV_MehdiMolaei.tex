@@ -1,0 +1,228 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{array}
+\usepackage{setspace}
+\usepackage{url}
+\usepackage{etoolbox}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.35em}
+
+\newlength{\cvindent}
+\setlength{\cvindent}{1.5em}
+
+\setlist[itemize]{leftmargin=1.6em, topsep=0.2em, itemsep=0.2em}
+\setlist[enumerate]{leftmargin=1.8em, topsep=0.2em, itemsep=0.3em}
+
+\titleformat{name=\section,numberless}{\large\bfseries}{}{0pt}{}
+\titlespacing*{\section}{0pt}{1.0em}{0.4em}
+\titleformat{name=\subsection,numberless}{\normalsize\bfseries}{}{0pt}{}
+\titlespacing*{\subsection}{\cvindent}{0.6em}{0.25em}
+
+\newenvironment{cvblock}{%
+  \begin{list}{}{%
+    \setlength{\leftmargin}{\cvindent}%
+    \setlength{\rightmargin}{0pt}%
+    \setlength{\labelwidth}{0pt}%
+    \setlength{\labelsep}{0pt}%
+    \setlength{\itemindent}{0pt}%
+    \setlength{\listparindent}{0pt}%
+    \setlength{\topsep}{0pt}%
+    \setlength{\partopsep}{0pt}%
+    \setlength{\parsep}{0pt}%
+    \setlength{\itemsep}{0pt}%
+  }
+  \item[]
+}{%
+  \end{list}
+}
+
+\newcommand{\cvitem}[5]{%
+  \begin{cvblock}
+  \textbf{#1}\hfill #2\\
+  \ifstrempty{#3}{}{{#3}\\}%
+  \ifstrempty{#4}{}{{#4}\\}%
+  \ifstrempty{#5}{}{#5}%
+  \end{cvblock}
+  \vspace{.5em}
+
+}
+
+\newcommand{\pubitem}[1]{\item #1}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{Mehdi Molaei}}\\[0.4em]
+    Senior Staff Engineer, Computational Imaging\\[0.5em]
+    San Francisco, CA \textbar{} US Citizen \\
+    Email: \href{mailto:m.aban.molaei@gmail.com}{m.aban.molaei@gmail.com} \textbar{}  \\
+    Phone: +1 (806) 786-3823 \\
+    LinkedIn: \href{https://www.linkedin.com/in/mehdi-molaei}{https://www.linkedin.com/in/mehdi-molaei} \\
+    Google Scholar: \href{https://scholar.google.com/citations?user=X3997dAAAAAJ&hl=en&authuser=3}{Mehdi Molaei}
+\end{center}
+
+\section*{Education}
+
+\cvitem{Johns Hopkins University, Baltimore, MD}{2012 -- 2015}{Ph.D., Mechanical Engineering}{Advisor: Prof. Jian Sheng, Prof Joseph Katz}
+
+\cvitem{Texas Tech University, Lubbock, TX}{2012 -- 2015}{Ph.D., Mechanical Engineering}{Advisor: Prof. Jian Sheng}{Dissertation: \textit{Hydrodynamics of bacterial locomotion near interfaces}. }
+
+\cvitem{University of Minnesota, Minneapolis, MN}{2010 -- 2012}{M.S., Aerospace Engineering and Mechanics}{Advisor: Prof. Jian Sheng}{Dissertation: \textit{Hydrodynamics of bacteria and solid-surface interaction using microfluidics and digital holographic microscopy}.}
+
+\cvitem{Sharif University of Technology, Tehran, Iran}{2007 -- 2010}{M.S., Mechanical Engineering}{Advisors: Prof. Saeed Saeedi and Prof. Bahareh Dehghan Firoozabadi}{Dissertation: \textit{One-dimensional modeling of the cardiovascular system}.}
+
+\cvitem{Sharif University of Technology, Tehran, Iran}{2003 -- 2007}{B.S., Mechanical Engineering}{}{}
+
+\section*{Research Interests}
+\begin{cvblock}
+Spatiotemporal modeling and inference; multimodal signal fusion and representation learning; rare-event and rare-class inference; machine-learning-enabled scientific instrumentation; real-time scientific computing; computational imaging and quantitative microscopy; soft and living matter physics; diffusion models.
+\end{cvblock}
+
+\section*{Professional Appointments and Research Experience}
+
+\cvitem{Senior Staff Engineer, Countable Labs, Palo Alto, CA}{Dec 2023 -- Jan 2026}{Team Lead, Countable PCR Analysis Software}{}{%
+Led the architecture and delivery of the production analysis platform converting multichannel light-sheet 3D PCR imaging into calibrated single-molecule counts; recognized with the \#1 Analytical Scientist Innovation Award (2025).
+\begin{itemize}
+    \item Architected and owned an end-to-end ETL and computational imaging pipeline for DNA molecule counting, including 3D reconstruction, artifact and aberration correction, compartment segmentation, failed-region detection, and unsupervised compartment-state assignment.
+    \item Designed and built an on-premises gRPC client--server analysis system with parallel compute execution, DAG-based dependency scheduling, and asynchronous status reporting, reducing latency from batch turnaround times exceeding 12 hours to live results.
+    \item Led development of a DNA linkage-detection module combining multichannel alignment, colocalization, regression modeling, and training/validation, achieving 97\% accuracy with less than 4\% false-positive rate.
+    \item Developed and deployed quality-control models for anomaly and defect detection in real-world PCR runs, achieving 75--95\% recall at false-positive rates of 5\% or below across multiple failure modes.
+    \item Co-led translational research for the Countable 10 system, expanding multiplexed imaging from 4 to 10 channels through channel-design optimization, spectral modeling, and advanced inference methods.
+    \item Developed a 10-color decoding workflow and a multimodal variational autoencoder for combinatorial DNA labeling, enabling scaling from 10-plex to 24-plex at 98\% accuracy.
+\end{itemize}}
+
+\cvitem{Staff Engineer, Countable Labs, Palo Alto, CA}{Aug 2022 -- Dec 2023}{Tech Lead, Image and Data Analysis Pipeline}{}{%
+Led development of production analysis methods that transformed PCR workflows from manual thresholding and operator-dependent interpretation into automated, quantitative inference.
+\begin{itemize}
+    \item Owned end-to-end release execution, including testing, build and release, verification and validation, and deployment of early-access instrument software to external customers.
+    \item Built and shipped a gradient-boosted decision-tree model for ultra-rare molecular detection, supporting sensitivity down to 0.004\% minor allele frequency with in-run calibration for drift and assay variability correction.
+    \item Developed and deployed 3D sample-region detection methods that reduced dead volume to less than 5\% and preserved valuable DNA samples.
+    \item Built a physics-informed regression calibration model for molecular density estimation, improving precision by 80\% and achieving coefficient of variation below 1\%.
+    \item Developed data analysis pipelines for multiplex detection, including data cleanup, augmentation, UMAP embedding, clustering, regression modeling, and visual quality-control dashboards, supporting development of a 22-target comboplex panel.
+    \item Defined and monitored key instrument quality metrics, implemented automated magnification calibration, and devised a PCA-based autofocus solution for instrument commissioning.
+\end{itemize}}
+
+\cvitem{Research Scientist, University of Chicago, Chicago, IL}{Aug 2020 -- Aug 2022}{Pritzker School of Molecular Engineering and James Franck Institute}{}{%
+\begin{itemize}
+    \item Developed a domain-general spatiotemporal correlation framework for tensor fields in stochastic systems, extending correlation analysis to incorporate internal headings and orientations and enabling robust inference under chaotic dynamics.
+    \item Recast correlation analysis as a data-driven, ensemble-averaged material response function and applied it to actomyosin active systems ranging from model systems to living cells.
+    \item Mentored doctoral students in quantitative imaging and data modeling, coauthored peer-reviewed publications, and presented research outcomes at conferences.
+\end{itemize}}
+
+\cvitem{Postdoctoral Researcher, University of Pennsylvania, Philadelphia, PA}{Sep 2015 -- Aug 2020}{Physical Sciences Oncology Center; Crocker Lab; Stebe Lab}{}{%
+\begin{itemize}
+    \item Developed correlated displacement velocimetry, a correlation-based, ensemble-averaged flow estimator built on particle tracking, enabling reconstruction of nanoscale interfacial velocity fields.
+    \item Built a polarization-resolved dark-field optical metrology system for sub-degree gold nanorod orientation tracking and developed physics-informed forward models to infer membrane mechanical parameters in model and cellular systems.
+    \item Designed and built a miniature 3D-printed Langmuir trough enabling simultaneous imaging tensiometry and interfacial microrheology across viscosities spanning approximately $10^{-9}$ to $10^{-1}$~N\,s\,m$^{-1}$.
+    \item Led studies of bacteria at fluid interfaces, combining physical and biological experiments to quantify interfacial film formation and bacterial motility; mentored doctoral students and contributed invited talks and publications.
+\end{itemize}}
+
+\cvitem{Research Assistant, Texas Tech University, Lubbock, TX}{Jul 2012 -- Aug 2015}{Laboratory for Advanced Energy, Bio-Fluids and Imaging}{}{%
+\begin{itemize}
+    \item Built an inline holographic microscopy platform and denoising and 3D-tracking algorithms for bacteria in dense suspensions.
+    \item Developed theoretical and numerical models for bacterial locomotion near solid and fluid interfaces.
+\end{itemize}}
+
+\cvitem{Research Assistant, University of Minnesota, Minneapolis, MN}{2010 -- 2012}{Jian Sheng Lab}{}{Conducted experimental and computational studies of bacterial hydrodynamics and locomotion near interfaces, including digital holographic microscopy and microfluidic systems.}
+
+\cvitem{Lab Manager, Sharif University of Technology, Tehran, Iran}{2009 -- 2010}{Laboratory of Computational Biofluid Mechanics}{}{Worked on mathematical modeling of blood flow in the cardiovascular system and supported laboratory research activities in computational biofluid mechanics.}
+
+\cvitem{Research Engineer, SITEC Co., Tehran, Iran}{2007 -- 2010}{}{}{Engineering role in applied mechanical systems and analysis.}
+
+\section*{Publications}
+
+\subsection*{Patent}
+\begin{cvblock}
+\begin{enumerate}
+    \pubitem{\textbf{Molaei, M.} et al. \textit{High dynamic range digital quantitation of targets}. U.S. Patent Application US20250264395A1, Countable Labs.}
+\end{enumerate}
+\end{cvblock}
+
+\subsection*{Peer-Reviewed Research Articles}
+\begin{cvblock}
+\begin{enumerate}
+    \pubitem{Chauhan, R., Usman, H., Minocha, N., \textbf{Molaei, M.}, et al. ``Predictive modeling and experimental validation of magnetophoretic delivery of magnetic nanocultures.'' \textit{ACS Materials Letters}, 2025.}
+    \pubitem{Usman, H., \textbf{Molaei, M.}, House, S. D., et al. ``Magnetically responsive nanocultures for direct microbial assessment in soil environments.'' \textit{Science Advances}, 2025.}
+    \pubitem{Redford, S. A., Colen, J., Zemsky, S., \textbf{Molaei, M.}, et al. ``Motor crosslinking augments elasticity in active nematics.'' \textit{Soft Matter}, 2024.}
+    \pubitem{Chou, W. H., \textbf{Molaei, M.}, et al. ``Limiting pool and actin architecture controls myosin cluster sizes in adherent cells.'' \textit{Biophysical Journal}, 2024.}
+    \pubitem{Crane, B. L., Jimenez-Angeles, D., Wang, J., \textbf{Molaei, M.}, et al. ``Interfacial rheology of lanthanide binding peptide surfactants at the air--water interface.'' \textit{Soft Matter}, 2024.}
+    \pubitem{Deng, J., \textbf{Molaei, M.}, et al. ``Swimmers at interfaces enhance interfacial transport.'' \textit{Soft Matter}, 2024.}
+    \pubitem{\textbf{Molaei, M.} et al. ``Measuring response functions of active materials from data.'' \textit{Proceedings of the National Academy of Sciences}, 2023.}
+    \pubitem{Rodriguez-Cruz, P., \textbf{Molaei, M.}, Crocker, J. C., et al. ``Experimental observations of fractal landscape dynamics in a dense emulsion.'' \textit{Soft Matter}, 2023.}
+    \pubitem{\textbf{Molaei, M.}, Sreeja, K. K., Graber, Z. T., et al. ``Probing lipid membrane bending mechanics using gold nanorod tracking.'' \textit{Physical Review Research}, 2022.}
+    \pubitem{\textbf{Molaei, M.}, Chisholm, N. G., et al. ``Interfacial flow around Brownian colloids.'' \textit{Physical Review Letters}, 2021.}
+    \pubitem{\textbf{Molaei, M.} and Crocker, J. C. ``Interfacial microrheology and tensiometry in a miniature, 3-D printed Langmuir trough.'' \textit{Journal of Colloid and Interface Science}, 2020.}
+    \pubitem{\textbf{Molaei, M.}, Deng, J., Chisholm, N. G., et al. ``Motile bacteria at oil--water interfaces: \textit{Pseudomonas aeruginosa}.'' \textit{Langmuir}, 2020.}
+    \pubitem{\textbf{Molaei, M.}, Vaccari, L., Leheny, R. L., and Stebe, K. J. ``Cargo carrying bacteria at interfaces.'' \textit{Soft Matter}, 2018.}
+    \pubitem{\textbf{Molaei, M.}, Atefi, E., and Crocker, J. C. ``Nanoscale rheology and anisotropic diffusion using single gold nanorod probes.'' \textit{Physical Review Letters}, 2018.}
+    \pubitem{\textbf{Molaei, M.} and Sheng, J. ``Succeed escape: Flow shear promotes tumbling of \textit{Escherichia coli} near a solid surface.'' \textit{Scientific Reports}, 2016.}
+    \pubitem{\textbf{Molaei, M.}, Barry, M., Stocker, R., et al. ``Failed Escape: Solid Surfaces Prevent Tumbling of \textit{Escherichia coli}.'' \textit{Physical Review Letters}, 2014.}
+    \pubitem{\textbf{Molaei, M.} and Sheng, J. ``Imaging bacterial 3D motion using digital in-line holographic microscopy and correlation-based denoising algorithm.'' \textit{Optics Express}, 2014.}
+\end{enumerate}
+\end{cvblock}
+
+\subsection*{Review Articles}
+\begin{cvblock}
+\begin{enumerate}
+    \pubitem{Deng, J., \textbf{Molaei, M.}, et al. ``Active colloids on fluid interfaces.'' \textit{Current Opinion in Colloid and Interface Science}, 2017.}
+    \pubitem{Rose, E., \textbf{Molaei, M.}, Boyle, J., et al. ``Particle tracking of nanoparticles in soft matter.'' \textit{Journal of Applied Physics}, 2020.}
+    \pubitem{Niepa, T. H. R., Vaccari, S., \textbf{Molaei, M.}, et al. ``Films of bacteria at interfaces.'' \textit{Advances in Colloid and Interface Science}, 2017.}
+\end{enumerate}
+\end{cvblock}
+
+\subsection*{Preprint}
+\begin{cvblock}
+\begin{enumerate}
+    \pubitem{Lai, J. H., Keum, J., Lee, H. G., \textbf{Molaei, M.}, et al. ``New realm of precision multiplexing enabled by massively-parallel single molecule UltraPCR.'' \textit{bioRxiv}, 2023.}
+\end{enumerate}
+\end{cvblock}
+
+\section*{Mentoring and Teaching}
+\begin{cvblock}
+\begin{itemize}
+    \item Mentored Ph.D. students and undergraduate researchers at the University of Pennsylvania and the University of Chicago on quantitative imaging, soft matter, and data modeling projects.
+    \item Contributed to undergraduate and teacher-focused summer research programs, including REU and RET activities.
+    \item Teaching Assistant, Experimental Fluid Mechanics, Texas Tech University (Spring 2013).
+    \item Teaching Assistant, Biofluid Mechanics, Sharif University of Technology (Spring 2009).
+\end{itemize}
+\end{cvblock}
+
+\section*{Selected Conference Presentations}
+\begin{cvblock}
+\begin{enumerate}
+    \pubitem{\textbf{Molaei, M.} ``Surfactants and fundamental flow fields at interfaces.'' APS Division of Fluid Dynamics Meeting, Phoenix, AZ, 2021.}
+    \pubitem{\textbf{Molaei, M.}, Chou, W., Redford, S. A., and Gardel, M. ``Local intracellular flow fields driven by active stresses of molecular motors.'' APS Division of Fluid Dynamics Meeting, Phoenix, AZ, 2021.}
+    \pubitem{\textbf{Molaei, M.}, Deng, J., Chisholm, N. G., Crocker, J. C., and Stebe, K. J. ``Displacement fields around thermally forced and active colloids at interfaces.'' AIChE Annual Meeting, Orlando, FL, 2019.}
+    \pubitem{\textbf{Molaei, M.} and Crocker, J. C. ``Motion of gold nanorods on the fluid lipid bilayer and cell plasma membranes: interfacial nanorheology.'' APS Division of Fluid Dynamics Meeting, Atlanta, GA, 2018.}
+    \pubitem{\textbf{Molaei, M.}, Vaccari, L., Leheny, R. L., and Stebe, K. J. ``Cargo carrying bacteria at interfaces.'' ACS Colloid \& Surface Science Symposium, State College, PA, 2018.}
+    \pubitem{\textbf{Molaei, M.} and Sheng, J. ``Motion of bacteria near a solid surface under shear flows.'' APS Division of Fluid Dynamics Meeting, San Francisco, CA, 2014.}
+\end{enumerate}
+\end{cvblock}
+
+\section*{Professional Service and Activities}
+\begin{cvblock}
+\begin{itemize}
+    \item Journal reviewer for \textit{Science Advances}, \textit{PNAS}, \textit{Soft Matter}, \textit{Journal of Fluid Mechanics}, \textit{Langmuir}, and \textit{Nano Letters}.
+    \item Member of the American Physical Society and the American Institute of Chemical Engineers.
+    \item Personal project: \textit{Trajkit}, an open-source Python toolkit for analyzing spatiotemporal trajectories and structured time-series data.
+\end{itemize}
+\end{cvblock}
+
+\section*{Honors and Recognition}
+\begin{cvblock}
+\begin{itemize}
+    \item \#1 Analytical Scientist Innovation Award, Countable Labs (2025).
+    \item Recognized graduate student as a GoMRI Scholar for oil-spill research (2014).
+    \item Ranked among the top 0.1\% of approximately 10,000 participants in the nationwide entrance examination for M.S. study in Iran (2007).
+    \item Ranked among the top 0.1\% of approximately 500,000 participants in the nationwide entrance examination for B.S. study in Iran (2003).
+\end{itemize}
+\end{cvblock}
+
+\end{document}
